@@ -1,0 +1,15 @@
+.container {
+  .evaluate {
+    direction: rtl;
+
+    i {
+      color: gray;
+    }
+  }
+
+  .evaluate > i:hover:before,
+  .evaluate > i:hover ~ i:before {
+    cursor: pointer;
+    color: goldenrod;
+  }
+}

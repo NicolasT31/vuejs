@@ -1,0 +1,10 @@
+.container .evaluate {
+  direction: rtl; }
+  .container .evaluate i {
+    color: gray; }
+.container .evaluate > i:hover:before,
+.container .evaluate > i:hover ~ i:before {
+  cursor: pointer;
+  color: goldenrod; }
+
+/*# sourceMappingURL=style.css.map */
