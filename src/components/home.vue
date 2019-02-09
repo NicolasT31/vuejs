@@ -32,14 +32,9 @@
                 movies : window.movies
             }
         },
-
-        methods: {
-            remove: function(index) {
-                this.movies.splice(index, 1)
-            }
-        },
         
         computed: {
+            //Rechercher un film
             movies_search: function() {
                 return this.movies.filter(m => m.title.toLowerCase().indexOf(this.search.toLowerCase())!=-1);
             }

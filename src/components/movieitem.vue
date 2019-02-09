@@ -19,7 +19,7 @@
                     </div>
                     <div class="mt-4">
                         <h2>Réalisateur</h2>
-                        {{ movie.producer.first_name }} {{ movie.producer.last_name }} (Né le {{ movie.producer.birth_date }})
+                        {{ movie.producer.first_name }} {{ movie.producer.last_name }} (Né le {{ showDate(movie.producer.birth_date) }})
                     </div>
                     <div class="mt-4">
                         <h2>Evaluer</h2>
@@ -29,7 +29,7 @@
                     </div>
                     <h2>Notes</h2>
                     <div class="mb-3">
-                       <b>Moyenne :</b> {{ averageNote(movie) }}/5
+                       <b>Votre note :</b> {{ movie.notes }}/5
                     </div>
                 </div>
                 <div class="col-6">
@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-12">
                     <router-link class="btn btn-sm btn-outline-primary" v-bind:to="{name:'edit', params:{id: movie.id}}">Edit</router-link>
-                    <button class="btn btn-sm btn-outline-danger" v-on:click="remove(index)"><i class="far fa-trash-alt"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" v-on:click="remove()"><i class="far fa-trash-alt"></i></button>
                 </div>
             </div>
         </div>
@@ -52,27 +52,31 @@
             };
         },
         methods: {
-            remove: function(index) {
-                this.$emit('remove', index);
-            },
-            addNote: function(movie, n) {
-                movie.notes.push((n-5)*-1+1);
-            },
-            averageNote: function(movie) {
-                var sum = 0;
-
-                if(movie.notes.length === 0)
-                    return "";
-
-                movie.notes.forEach(function(element) {
-                    sum += element;
+            //Supprimer un film
+            remove: function() {
+                let i = this.movies.findIndex(obj => {
+                    return obj.id == this.$route.params['id'];
                 });
 
-                return (sum/movie.notes.length).toFixed(1);
+                this.movies.splice(i, 1);
+                this.$router.go(-1)
+            },
+
+            //Ajouter une note
+            addNote: function(movie, n) {
+                movie.notes = (n-5)*-1+1;
+                this.$forceUpdate()
+            },
+
+            //Afficher une date au bon format
+            showDate: function(date) {
+                var d = new Date(date);
+                return d.toLocaleDateString("fr-FR");
             }
         },
 
         computed: {
+            //On retourne le film correspondant à l'id de l'url
             movie: function() {
                 return this.movies.find(obj => {
                     return obj.id == this.$route.params['id'];
