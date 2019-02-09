@@ -2,7 +2,7 @@
     <div>
         <h2>Nouveau film</h2>
             Titre : <input class="form-control" type="text" v-model="movie_to_add.title" /><br />
-            Année de sortie : <input class="form-control" type="text" v-model="movie_to_add.year" /><br />
+            Année de sortie : <input class="form-control" type="number" v-model="movie_to_add.year" /><br />
             Synopsis : <textarea class="form-control" v-model="movie_to_add.synopsys"></textarea><br />
             Url du poster : <input class="form-control" v-model="movie_to_add.url" /><br />
             Langue : <select class="custom-select mb-4" v-model="movie_to_add.lang">

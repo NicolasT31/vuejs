@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="text-center"> <img :src="movie.url" /> </div>
+                    <div class="text-center"> <img :src="movie.url" style="max-width: 100%;" /> </div>
                 </div>
                 <div class="col-12">
                     <router-link class="btn btn-sm btn-outline-primary" v-bind:to="{name:'edit', params:{id: movie.id}}">Edit</router-link>
